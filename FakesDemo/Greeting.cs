@@ -38,11 +38,11 @@ namespace FakesDemo
         {
             if (CalendarUtilities.IsLeapYear(DateTime.Now.Year))
             {
-                return $"HELLO, {userName}! HAVE A NICE DAY~~!";
+                return $"HEY, {userName}! THIS YEAR IS A LEAP YEAR! PLEASE CHECK YOUR CODES!";
             }
             else
             {
-                return $"HEY, {userName}! THIS YEAR IS A LEAP YEAR! PLEASE CHECK YOUR CODES!";
+                return $"HELLO, {userName}! HAVE A NICE DAY~~!";
             }
         }
     }

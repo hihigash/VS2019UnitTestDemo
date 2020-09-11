@@ -21,41 +21,27 @@ namespace FakesDemo.Tests
             var target = new Greeting();
 
             // Act
-            var actual = target.Hello(userName);
-
-            // Assert
-            Assert.AreEqual(expected, actual);
-        }
-
-        [Ignore]
-        [TestMethod()]
-        public void Hello_IsLeapYear_1()
-        {
-            // Arrange
-            var userName = "Harada Takahiro";
-            var expected = $"HEY, {userName}! THIS YEAR IS A LEAP YEAR! PLEASE CHECK YOUR CODES!";
-            var target = new Greeting();
-
-            // Act
-            var actual = target.Hello(userName);
-
-            // Assert
-            Assert.AreEqual(expected, actual);
-        }
-
-        [TestMethod()]
-        public void Hello_IsLeapYear_2()
-        {
-            // Arrange
-            var userName = "Harada Takahiro";
-            var expected = $"HEY, {userName}! THIS YEAR IS A LEAP YEAR! PLEASE CHECK YOUR CODES!";
-            var target = new Greeting();
-
-            // Act
+            string actual;
             using (ShimsContext.Create())
             {
-                var actual = target.Hello(userName);
+                FakesDemo.Fakes.ShimCalendarUtilities.IsLeapYearInt32 = i => false;
+                actual = target.Hello(userName);
             }
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod()]
+        public void Hello_IsLeapYear()
+        {
+            // Arrange
+            var userName = "Harada Takahiro";
+            var expected = $"HEY, {userName}! THIS YEAR IS A LEAP YEAR! PLEASE CHECK YOUR CODES!";
+            var target = new Greeting();
+
+            // Act
+            var actual = target.Hello(userName);
 
             // Assert
             Assert.AreEqual(expected, actual);
