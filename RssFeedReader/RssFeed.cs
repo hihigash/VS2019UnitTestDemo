@@ -58,6 +58,16 @@ namespace RssFeedReader
             var stream = client.OpenRead(url);
             return stream;
         }
+
+        private string GetFeedDisplayName(string title, string description)
+        {
+            return $"RSS : {title} ({description})";
+        }
+
+        public override string ToString()
+        {
+            return GetFeedDisplayName(Title, Description);
+        }
     }
 
     public class ChannelItem
